@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JSON JavaScript Course</title>
+</head>
+
+<body>
+    <div id="addButton">Get User</div>
+    <div id="testButton">Test Map</div>
+    <div id="output"></div>
+    <script>
+        const addButton = document.getElementById('addButton');
+        addButton.addEventListener('click', addJSON);
+        const testButton = document.getElementById('testButton');
+        testButton.addEventListener('click', tester);
+        function tester(){
+            console.log('clicked');
+            let tempArray = [4,5,6,7,9,122];
+            const html = tempArray.map(function(val,i){
+              return '<li>' +i+' = ' + (val * 2)+'</li>';   
+            })
+            console.log(html.join(''));
+            output.innerHTML = '<ul>'+html.join('')+'</ul>';
+        }
+        String.prototype.capitalize = function(){
+            return this.charAt(0).toUpperCase() + this.slice(1);   
+        }
+        const output = document.querySelector('#output');
+
+        function addJSON() {
+            const url = "https://randomuser.me/api/?results=50";
+            fetch(url).then(function (response) {
+                return response.json()
+            }).then(function (data) {
+                let people = data.results;
+                console.log(people);
+                const html = people.map(function(val,i){
+                    let firstName = val.name.first.capitalize();
+                    let lastName = val.name.last.capitalize();
+                    return '<li>'+(i+1)+'. ' +firstName+' ' +lastName+'</li>';   
+                })
+                output.innerHTML = '<ul>'+html.join('')+'</ul>';
+                
+                //output.innerHTML = "FirstName = " + people[0].name.first + "<br> LastName = " + people[0].name.last
+
+            })
+        }
+    </script>
+</body>
+
+</html>

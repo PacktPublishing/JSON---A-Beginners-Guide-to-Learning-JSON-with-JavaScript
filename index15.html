@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JSON JavaScript Course</title>
+</head>
+
+<body>
+    <div id="addButton">Get User</div>
+
+    <div id="output"></div>
+    <script>
+        const addButton = document.getElementById('addButton');
+        addButton.addEventListener('click', addJSON);
+        const output = document.querySelector('#output');
+
+        function addJSON() {
+            const id = '1IPYlKMFR_GYNAgPHxBplwPt-yrn9k5j29h1GP-pv-6I'
+            const url = "https://spreadsheets.google.com/feeds/list/"+id+"/od6/public/values?alt=json";
+            output.innerHTML = '';
+            fetch(url).then(function (response) {
+                return response.json()
+            }).then(function (data) {
+                let entry = data.feed.entry;
+                for(let x=0;x<entry.length;x++){
+                    let email = entry[x].gsx$email.$t;
+                    let id = entry[x].gsx$id.$t;
+                    let first = entry[x].gsx$firstname.$t;
+                    let last = entry[x].gsx$lastname.$t;
+                    output.innerHTML += '<div>'+first+' ' +last+ ' ' +email+ ' ' +id+'</div>';
+                    console.log(email);
+                }
+            })
+            .catch(function(error){
+                console.log(error);  
+            })
+        }
+    </script>
+</body>
+
+</html>

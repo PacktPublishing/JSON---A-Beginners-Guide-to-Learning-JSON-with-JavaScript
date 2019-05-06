@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JSON JavaScript Course</title>
+</head>
+
+<body>
+    <div id="addButton">Get User</div>
+
+    <div id="output"></div>
+    <script>
+        const addButton = document.getElementById('addButton');
+        addButton.addEventListener('click', addJSON);
+        const output = document.querySelector('#output');
+
+        function addJSON() {
+            const id = '1IPYlKMFR_GYNAgPHxBplwPt-yrn9k5j29h1GP-pv-6I'
+            const url = "https://spreadsheets.google.com/feeds/list/"+id+"/od6/public/basic?alt=json";
+            output.innerHTML = '';
+            fetch(url).then(function (response) {
+                return response.json()
+            }).then(function (data) {
+                console.log(data);
+            })
+            .catch(function(error){
+                console.log(error);  
+            })
+        }
+    </script>
+</body>
+
+</html>

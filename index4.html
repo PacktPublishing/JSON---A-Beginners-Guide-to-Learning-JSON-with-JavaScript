@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JSON JavaScript Course</title>
+</head>
+
+<body>
+    <script>
+        var myJSON = {"first":"Laurence","last":"Svekis"};
+        console.log(myJSON);
+        var myJSONstringified = JSON.stringify(myJSON);
+        console.log(myJSONstringified);
+        var myJSONparsed = JSON.parse(myJSONstringified);
+        myJSONparsed.first = "John";
+        console.log(myJSONparsed);
+        var sendData = JSON.stringify(myJSONparsed);
+        console.log(sendData);
+        
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        //var myJSON = {"name first":"Laurence","age":30};
+        //var myJSON1 = {name:"Laurence","age":30};
+        //var myObj = {'test':function(){return 'Hello';}}
+    </script>
+</body>
+
+</html>
